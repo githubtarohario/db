@@ -1,0 +1,133 @@
+実習で使うSQL
+(1)テーブルgiantsを作る
+create table giants(
+No Text,
+name Text,
+height integer,
+weight integer
+);
+
+(2)
+select * from sqlite_master;
+
+
+(3)
+create table test(id TEXT,科目 not null);
+insert into test(id) values('1');
+drop table test;
+
+(4)
+create table test(id,学年 default "3年生");
+insert into test(id) values('1,);
+select * from test;
+drop table test;
+
+(5)
+
+create table 成績(
+No integer primary key autoincrement,
+国語  integer Not NULL,
+数学  integer NOT NULL,
+学年  text default "中３");               
+
+
+
+★insert文
+insert into giants(No,Name,height,weight) values('1','吉川大幾',175,78);
+insert into giants(No,Name,height,weight) values('2','増田大輝',172,68);
+insert into giants(No,Name,height,weight) values('3','比嘉賢伸',180,82);
+insert into giants(No,Name,height,weight) values('4','平間隼人',173,75);
+
+
+
+SELECT
+select * from giants;
+
+select 選手名,守備,身長,体重 from giants; 
+
+select * from giants where 守備=‘内野手, 
+select * from giants where 身長>=170;
+
+select 守備 from giants group by 守備;
+
+select * from giants order by 身長 asc;
+select * from giants order by 身長 desc;
+select * from giants where 選手名 like '坂%,;
+select avg(体重) from giants;
+select sum(体重) from giants;
+select max(体重) from giants;
+select * from giants where 体重>75 and 身長>170;
+select count(*) from giants
+SELECT COUNT(DISTINCT 守備 ) from giants;
+SELECT 守備, COUNT(守備) FROM giants group by 守備; 
+
+★内部結合
+従業員.db
+
+create table employee
+(
+id integer primary key autoincrement,
+Name TEXT,
+department_id TEXT
+);
+
+create table department(
+department_id TEXT,
+department TEXT
+
+);
+
+
+
+insert into employee(id,Name,department_id) values('1','松下','3');
+insert into employee(id,Name,department_id) values('2','田中','3');
+insert into employee(id,Name,department_id) values('3','高橋','1');
+insert into employee(id,Name,department_id) values('4','吉原','5');
+
+insert into  department(department_id,department)  values('1','営業');
+insert into  department(department_id,department)  values('2','開発');
+insert into  department(department_id,department)  values('3','総務');
+insert into  department(department_id,department)  values('4','秘書');
+
+
+
+
+
+
+SELECT テーブル名.カラム名, ... FROM テーブル名1
+LEFT OUTER JOIN テーブル名2
+ON テーブル名1.カラム名1 = テーブル名2.カラム名2;
+
+
+
+create table 
+科目表(科目番号,
+科目);
+
+create table 
+成績表(学生番号,
+名前,
+科目番号,
+成績 intger) ;
+
+
+insert into 科目表(科目番号,科目) values('001','国語');
+insert into 科目表(科目番号,科目) values('002','数学');
+insert into 科目表(科目番号,科目) values('003','理科');
+
+insert into  成績表(学生番号,名前,科目番号,成績) values('001','田中','001',80);
+insert into  成績表(学生番号,名前,科目番号,成績) values('002','佐藤','002',90);
+insert into  成績表(学生番号,名前,科目番号,成績) values('003','馬場','001',65);
+insert into  成績表(学生番号,名前,科目番号,成績) values('004','宮田','007',65);
+
+
+
+select * from 成績表 left outer join 科目表 
+on 成績表.科目番号=科目表.科目番号;
+
+
+select * from 成績表 inner join 科目表 
+on 成績表.科目番号=科目表.科目番号;
+
+
+
